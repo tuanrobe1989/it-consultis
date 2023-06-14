@@ -1,0 +1,51 @@
+.leaderships{
+    @apply relative #{!important};
+    &__item{
+        @apply flex flex-col md:flex-row text-center md:text-left items-center bg-white overflow-hidden;
+        &__thumb{
+            @apply max-w-[264px] md:max-w-[300px] w-full flex-shrink-0;
+        }
+        &__content{
+            @apply mt-8 md:mt-0 md:pl-8 box-border max-w-full ;
+            p{
+                @apply text-center md:text-left;
+            }
+            &--tit{
+                @apply  pb-2 text-third-black; 
+                @apply font-thin #{!important};
+            }
+            &--des{
+                @apply text-[15px] md:text-base px-4 md:px-0;
+            }
+            &--position{
+                @apply font-thin #{!important};
+            }
+        }
+        &--slogan{
+            @apply text-[2.15rem] md:text-[3.5rem] leading-none italic text-light-gray font-semibold pb-2;
+        }
+    }
+}
+.owl-carouse{
+    @apply relative;
+}
+.owl-nav{
+    @apply absolute top-[50%] mt-[-50px] md:mt-[-86px] xl:mt-[-25px] w-full flex justify-between;
+    .owl-prev,.owl-next{
+        @apply  w-[40px] block xl:w-[50px] h-[40px] xl:h-[50px];
+        @apply border-solid rounded-full border xl:border-2 border-black #{!important};
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        span{
+            @apply hidden;
+        }
+    }
+    .owl-prev{
+        @apply md:-ml-[1.875rem] xl:-ml-[3.875rem];
+        background-image: url('~images/common/icon-arrow-left.webp') !important;
+    }
+    .owl-next{
+        @apply  md:-mr-[1.875rem] xl:-mr-[3.875rem];
+        background-image: url('~images/common/icon-arrow-right.webp') !important;
+    }
+}

@@ -1,0 +1,12 @@
+.footer{
+    @apply flex flex-col lg:flex-row justify-between bg-light-gray items-center px-[16px] lg:px-[50px] py-[20px] lg:py-[40px] ;
+    p{
+        @apply pb-0  text-third-black;
+    }
+    &__copyright{
+        @apply my-6 lg:my-0 text-black text-xs;
+    }
+    &__socials{
+        @apply flex gap-8;
+    }
+}

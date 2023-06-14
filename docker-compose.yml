@@ -1,0 +1,59 @@
+version: '3.1'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ict_user
+      WORDPRESS_DB_PASSWORD: ict_password
+      WORDPRESS_DB_NAME: ict_db
+    volumes:
+      - wordpress_data:/var/www/html
+      - /Users/kenluu/development/wordpress/it-consultis/wp-content/themes/itc:/var/www/html/wp-content/themes/itc
+      - /Users/kenluu/development/wordpress/it-consultis/wp-content/plugins:/var/www/html/wp-content/plugins
+    networks:
+      - ict-network
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: ict_db
+      MYSQL_USER: ict_user
+      MYSQL_PASSWORD: ict_password
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - ict-network
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+    networks:
+      - ict-network
+    
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - wordpress
+    networks:
+      - ict-network
+
+volumes:
+  wordpress_data:
+  db_data:
+  
+networks:
+  ict-network:
+    driver: bridge
